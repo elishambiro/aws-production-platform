@@ -136,6 +136,11 @@ push to master
 └─────────────────┘
 ```
 
+## Screenshots
+
+### Grafana Dashboard
+![Grafana Dashboard](docs/grafana-dashboard.png)
+
 ## Monitoring
 
 Grafana comes pre-configured with:
