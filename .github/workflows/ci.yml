@@ -58,15 +58,21 @@ jobs:
         run: docker compose up -d
         timeout-minutes: 3
 
-      - name: Wait for services to be healthy
+      - name: Wait for Terraform to finish
+        run: |
+          echo "Waiting for Terraform to complete..."
+          docker compose wait terraform
+          echo "Terraform done!"
+
+      - name: Wait for app to be healthy
         run: |
           echo "Waiting for app to be ready..."
-          for i in $(seq 1 30); do
+          for i in $(seq 1 20); do
             if curl -sf http://localhost:5000/health; then
               echo "App is healthy!"
               break
             fi
-            echo "Attempt $i/30 - waiting..."
+            echo "Attempt $i/20 - waiting..."
             sleep 5
           done
 
